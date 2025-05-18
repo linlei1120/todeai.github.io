@@ -1,0 +1,154 @@
+<svg xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 1024 1024" height="1024px" width="1024px">
+    <title>数据看板</title>
+    <defs>
+        <circle r="512" cy="512" cx="512" id="path-1"></circle>
+        <filter id="filter-2" filterUnits="objectBoundingBox" height="100.8%" width="100.8%" y="-0.4%" x="-0.4%">
+            <feGaussianBlur result="shadowBlurInner1" in="SourceAlpha" stdDeviation="4"></feGaussianBlur>
+            <feOffset result="shadowOffsetInner1" in="shadowBlurInner1" dy="0" dx="0"></feOffset>
+            <feComposite result="shadowInnerInner1" k3="1" k2="-1" operator="arithmetic" in2="SourceAlpha" in="shadowOffsetInner1"></feComposite>
+            <feColorMatrix in="shadowInnerInner1" type="matrix" values="0 0 0 0 0.534946646   0 0 0 0 0.702965923   0 0 0 0 1  0 0 0 0.5 0"></feColorMatrix>
+        </filter>
+        <circle r="438.857143" cy="512" cx="512" id="path-3"></circle>
+        <filter id="filter-5" filterUnits="objectBoundingBox" height="102.3%" width="102.3%" y="-1.1%" x="-1.1%">
+            <feGaussianBlur result="shadowBlurInner1" in="SourceAlpha" stdDeviation="8"></feGaussianBlur>
+            <feOffset result="shadowOffsetInner1" in="shadowBlurInner1" dy="4" dx="0"></feOffset>
+            <feComposite result="shadowInnerInner1" k3="1" k2="-1" operator="arithmetic" in2="SourceAlpha" in="shadowOffsetInner1"></feComposite>
+            <feColorMatrix in="shadowInnerInner1" type="matrix" values="0 0 0 0 0.534946646   0 0 0 0 0.702965923   0 0 0 0 1  0 0 0 0.601453234 0"></feColorMatrix>
+        </filter>
+        <polygon points="0 489.78486 364.74944 282.326828 721.67619 489.78486 360.838095 691.926828" id="path-6"></polygon>
+        <filter id="filter-7" filterUnits="objectBoundingBox" height="103.7%" width="102.2%" y="-1.4%" x="-1.1%">
+            <feMorphology result="shadowSpreadOuter1" in="SourceAlpha" operator="dilate" radius="0.5"></feMorphology>
+            <feOffset result="shadowOffsetOuter1" in="shadowSpreadOuter1" dy="2" dx="0"></feOffset>
+            <feGaussianBlur result="shadowBlurOuter1" in="shadowOffsetOuter1" stdDeviation="2"></feGaussianBlur>
+            <feComposite result="shadowBlurOuter1" operator="out" in2="SourceAlpha" in="shadowBlurOuter1"></feComposite>
+            <feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.760784314   0 0 0 0 0.854901961   0 0 0 0 0.996078431  0 0 0 0.4 0"></feColorMatrix>
+        </filter>
+        <polygon points="67.2914286 456.006557 350.218697 296.9554 627.078095 456.006557 347.184762 610.982066" id="path-8"></polygon>
+        <filter id="filter-9" filterUnits="objectBoundingBox" height="104.5%" width="102.5%" y="-1.6%" x="-1.3%">
+            <feOffset result="shadowOffsetOuter1" in="SourceAlpha" dy="2" dx="0"></feOffset>
+            <feGaussianBlur result="shadowBlurOuter1" in="shadowOffsetOuter1" stdDeviation="2"></feGaussianBlur>
+            <feColorMatrix in="shadowBlurOuter1" type="matrix" values="0 0 0 0 0.760784314   0 0 0 0 0.854901961   0 0 0 0 0.996078431  0 0 0 0.4 0"></feColorMatrix>
+        </filter>
+        <linearGradient id="linearGradient-10" y2="50%" x2="94.0223062%" y1="50%" x1="0%">
+            <stop offset="0%" stop-color="#E0EAFF"></stop>
+            <stop offset="100%" stop-color="#639BFF"></stop>
+        </linearGradient>
+        <polygon points="0 41.737277 75.0933333 0 75.0933333 299.597745 0 341.333333" id="path-11"></polygon>
+        <linearGradient id="linearGradient-13" y2="50%" x2="94.0223062%" y1="50%" x1="0%">
+            <stop offset="0%" stop-color="#E0EAFF"></stop>
+            <stop offset="100%" stop-color="#639BFF"></stop>
+        </linearGradient>
+        <polygon points="0 299.597538 75.0933333 341.333333 75.0933333 41.7357952 0 0" id="path-14"></polygon>
+        <linearGradient id="linearGradient-16" y2="50%" x2="94.0223062%" y1="50%" x1="0%">
+            <stop offset="0%" stop-color="#E0EAFF"></stop>
+            <stop offset="100%" stop-color="#639BFF"></stop>
+        </linearGradient>
+        <polygon points="0 41.7357952 75.0933333 0 75.0933333 299.597538 0 341.333333" id="path-17"></polygon>
+        <polygon points="75.0933333 41.7357952 0 0 0 299.597538 75.0933333 341.333333" id="path-19"></polygon>
+        <linearGradient id="linearGradient-21" y2="50%" x2="94.0223062%" y1="50%" x1="0%">
+            <stop offset="0%" stop-color="#E0EAFF"></stop>
+            <stop offset="100%" stop-color="#639BFF"></stop>
+        </linearGradient>
+        <polygon points="0 41.737277 75.0933333 0 75.0933333 299.597745 0 341.333333" id="path-22"></polygon>
+        <polygon points="0 299.597538 75.0933333 341.333333 75.0933333 41.7357952 0 0" id="path-24"></polygon>
+        <linearGradient id="linearGradient-26" y2="50%" x2="94.0223062%" y1="50%" x1="0%">
+            <stop offset="0%" stop-color="#E0EAFF"></stop>
+            <stop offset="100%" stop-color="#639BFF"></stop>
+        </linearGradient>
+        <linearGradient id="linearGradient-27" y2="100%" x2="50%" y1="0%" x1="50%">
+            <stop offset="0%" stop-opacity="0" stop-color="#9CBCFA"></stop>
+            <stop offset="100%" stop-color="#92ABFF"></stop>
+        </linearGradient>
+    </defs>
+    <g fill-rule="evenodd" fill="none" stroke-width="1" stroke="none" id="页面-1">
+        <g id="数据看板">
+            <g id="蒙版">
+                <use xlink:href="#path-1" fill-rule="evenodd" fill="#FFFFFF"></use>
+                <use xlink:href="#path-1" filter="url(#filter-2)" fill-opacity="1" fill="black"></use>
+            </g>
+            <mask fill="white" id="mask-4">
+                <use xlink:href="#path-3"></use>
+            </mask>
+            <g id="蒙版">
+                <use xlink:href="#path-3" fill-rule="evenodd" fill="#316CD4"></use>
+                <use xlink:href="#path-3" filter="url(#filter-5)" fill-opacity="1" fill="black"></use>
+            </g>
+            <g mask="url(#mask-4)" id="1备份-14">
+                <g transform="translate(151.161905, 180.911267)">
+                    <g id="路径-9">
+                        <use xlink:href="#path-6" filter="url(#filter-7)" fill-opacity="1" fill="black"></use>
+                        <use xlink:href="#path-6" fill-rule="evenodd" fill="#FFFFFF" stroke-width="1" stroke="#C2DAFE"></use>
+                    </g>
+                    <g id="路径-9">
+                        <use xlink:href="#path-8" filter="url(#filter-9)" fill-opacity="1" fill="black"></use>
+                        <use xlink:href="#path-8" fill-rule="evenodd" fill="#C2DAFE"></use>
+                    </g>
+                    <g transform="translate(272.091429, 0.000000)" fill-rule="evenodd" stroke-width="1" id="编组">
+                        <polygon points="74.96 0 0 38.6568155 74.6809572 79.5020664 150.186667 37.5420664" fill="url(#linearGradient-10)" id="Fill-1"></polygon>
+                        <polygon points="74.960547 17.0025036 34 40.8958369 74.960547 64.7891703 115.92 40.8958369" fill="#FFFFFF" id="Fill-1"></polygon>
+                        <polygon points="74.960547 3.00250359 34 26.8958369 74.960547 50.7891703 115.92 26.8958369" fill="#44F1F8" id="Fill-1"></polygon>
+                        <g transform="translate(68.266667, 37.542066)">
+                            <mask fill="white" id="mask-12">
+                                <use xlink:href="#path-11"></use>
+                            </mask>
+                            <g id="Clip-4"></g>
+                            <polygon points="0 41.737277 75.0933333 0 75.0933333 299.597745 0 341.333333" mask="url(#mask-12)" id="Fill-3"></polygon>
+                        </g>
+                        <polygon points="75.2666667 79.2778616 150.36 37.5420664 150.36 337.139605 75.2666667 378.8754" fill="url(#linearGradient-13)" id="Stroke-5"></polygon>
+                        <g transform="translate(0.000000, 37.542066)">
+                            <mask fill="white" id="mask-15">
+                                <use xlink:href="#path-14"></use>
+                            </mask>
+                            <g id="Clip-7"></g>
+                            <polygon points="0 299.597538 75.0933333 341.333333 75.0933333 41.7357952 0 0" mask="url(#mask-15)" fill="#639BFF" id="Fill-6"></polygon>
+                        </g>
+                        <polygon points="197.973333 85.3287331 273.066667 119.462066 197.973333 161.197862 122.706667 120.874596" fill="url(#linearGradient-16)" id="Fill-8"></polygon>
+                        <polygon points="197.972786 98.9820664 238.933333 119.461628 197.972786 139.942066 157.013333 119.461628" fill="#FFFFFF" id="Fill-8"></polygon>
+                        <polygon points="197.972786 85.3287331 238.933333 105.808295 197.972786 126.288733 157.013333 105.808295" fill="#44F1F8" id="Fill-8"></polygon>
+                        <g transform="translate(197.973333, 119.462066)">
+                            <mask fill="white" id="mask-18">
+                                <use xlink:href="#path-17"></use>
+                            </mask>
+                            <g id="Clip-11"></g>
+                            <polygon points="0 41.7357952 75.0933333 0 75.0933333 299.597538 0 341.333333" mask="url(#mask-18)" id="Fill-10"></polygon>
+                        </g>
+                        <polygon points="197.973333 161.197862 273.066667 119.462066 273.066667 419.059605 197.973333 460.7954" fill="url(#linearGradient-13)" id="Stroke-12"></polygon>
+                        <g transform="translate(122.880000, 119.462066)">
+                            <mask fill="white" id="mask-20">
+                                <use xlink:href="#path-19"></use>
+                            </mask>
+                            <g id="Clip-15"></g>
+                            <polygon points="75.0933333 41.7357952 0 0 0 299.597538 75.0933333 341.333333" mask="url(#mask-20)" fill="#639BFF" id="Fill-14"></polygon>
+                        </g>
+                    </g>
+                    <g transform="translate(147.211429, 79.502066)" fill-rule="evenodd" stroke-width="1" id="编组备份">
+                        <polygon points="71.6809572 0 -5.68434189e-14 37.5466667 71.6809572 75.0933333 143.36 37.5466667" fill="url(#linearGradient-21)" id="Fill-1"></polygon>
+                        <polygon points="71.960547 14 31 37.8933333 71.960547 61.7866667 112.92 37.8933333" fill="#FFFFFF" id="Fill-1"></polygon>
+                        <polygon points="71.960547 0 31 23.8933333 71.960547 47.7866667 112.92 23.8933333" fill="#44F1F8" id="Fill-1"></polygon>
+                        <g transform="translate(70.266667, 33.133333)" id="编组">
+                            <mask fill="white" id="mask-23">
+                                <use xlink:href="#path-22"></use>
+                            </mask>
+                            <g id="Clip-4"></g>
+                            <polygon points="0 41.737277 75.0933333 0 75.0933333 299.597745 0 341.333333" mask="url(#mask-23)" id="Fill-3"></polygon>
+                        </g>
+                        <polygon points="70.2666667 74.8691285 145.36 33.1333333 145.36 332.730871 70.2666667 374.466667" fill="url(#linearGradient-13)" id="Stroke-5"></polygon>
+                        <g transform="translate(2.000000, 33.133333)" id="编组">
+                            <mask fill="white" id="mask-25">
+                                <use xlink:href="#path-24"></use>
+                            </mask>
+                            <g id="Clip-7"></g>
+                            <polygon points="-6 299.597538 69.0933333 341.333333 69.0933333 41.7357952 -6 -1.42108547e-13" mask="url(#mask-25)" fill="#639BFF" id="Fill-6"></polygon>
+                        </g>
+                        <polygon points="199.679043 73 272.004738 110.546667 199.679043 148.093333 124.88 108.226667" fill="url(#linearGradient-26)" id="Fill-8"></polygon>
+                        <polygon points="199.959453 94 240.92 114.479561 199.959453 134.96 159 114.479561" fill="#FFFFFF" id="Fill-8"></polygon>
+                        <polygon points="199.959453 80 240.92 100.479561 199.959453 120.96 159 100.479561" fill="#44F1F8" id="Fill-8"></polygon>
+                        <polygon points="199.973333 149.962462 275.066667 108.226667 275.066667 407.824205 199.973333 449.56" fill="url(#linearGradient-13)" id="Stroke-12"></polygon>
+                        <polygon points="199.973333 149.962462 124.88 108.226667 124.88 407.824205 199.973333 449.56" fill="#639BFF" id="Fill-14"></polygon>
+                    </g>
+                </g>
+            </g>
+            <path mask="url(#mask-4)" stroke-linejoin="round" stroke-linecap="round" stroke-width="2" stroke="url(#linearGradient-27)" id="路径" d="M329.603071,322.151184 C209.575436,340.33402 127.146667,377.949911 127.146667,421.404094 C127.146667,482.641861 290.848793,532.284879 492.785599,532.284879 C694.722406,532.284879 858.424532,482.641861 858.424532,421.404094 C858.424532,374.59485 762.775873,334.560241 627.514655,318.293333"></path>
+        </g>
+    </g>
+</svg>
