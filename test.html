@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    const apiResponse = {
+      frist_name: 'Kevin',
+      last_name: 'tom',
+      user_age: "14",
+      address: {
+        city: "shenzhen",
+        zip: "1001"
+      }
+    }
+    const {
+      frist_name:fristName,
+      last_name:lastName,
+      user_age:userAge,
+      address:addr
+    } = apiResponse
+    // console.log(fristName); // Kevin
+    // console.log(lastName); // tom
+    // console.log(userAge); // 14
+    // console.log(addr); // {city: 'shenzhen', zip: '1001'}
+    // 函数柯里化
+    // function discount(val, price) {
+    //   return price - (price * discount / 100)
+    // }
+    const discount = (val) => (price) => price - (price * val / 100)
+    const ten = discount(10);
+    const tewnty = discount(20);
+
+    console.log(ten(100));
+    console.log(tewnty(100));
+    
+    //  const applyDiscount = (discount) => (price) => price - (price * discount / 100);
+    //  const tenPercentOff = applyDiscount(10);
+    //  const twentyPercentOff = applyDiscount(20);
+
+    //  console.log(tenPercentOff(100)); // 90
+    //  console.log(twentyPercentOff(100)); // 80
+
+    //  const applyTax = (taxRate) => (price) => price + (price * taxRate / 100);
+    //  const applyTenPercentTax = applyTax(10);
+
+    //  console.log(applyTenPercentTax(100)); // 110
+    //  console.log(applyTenPercentTax(twentyPercentOff(100))); // 88
+  </script>
+
+</body>
+</html>

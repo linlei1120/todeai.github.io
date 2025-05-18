@@ -1,0 +1,29 @@
+{
+  "name": "vitepress-blog",
+  "version": "1.0.0",
+  "packageManager": "pnpm@8.14.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "deploy": "bash deploy.sh",
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitepress-code-preview/container": "^1.0.8",
+    "@vitepress-code-preview/plugin": "^1.0.6",
+    "busuanzi.pure.js": "^1.0.3",
+    "canvas-confetti": "^1.9.3",
+    "vitepress": "^1.3.4",
+    "vue": "^3.4.38"
+  },
+  "devDependencies": {
+    "markdown-it-container": "^4.0.0",
+    "vitepress-plugin-sandpack": "^1.1.4"
+  }
+}
