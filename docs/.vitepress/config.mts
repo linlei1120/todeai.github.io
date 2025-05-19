@@ -48,7 +48,7 @@ export default defineConfig({
           text: '项目结构规范',
           link: '/devGuide/index',
         },{
-          text: 'JS编码规范',
+          text: '模块和加载器规范',
           link: '/devGuide/jsGuide',
         }] },
       { text: "工具导航栏", link: "/toolsFiles/tools-list" }
