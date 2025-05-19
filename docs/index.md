@@ -2,25 +2,19 @@
 layout: home
 
 hero:
-  name: "Codery's Blog"
-  text: "个人开发文档"
-  tagline: Codery's Blog Web Site
+  name: "TodeAI's Blog"
+  text: "团队开发文档"
+  tagline: TodeAI's Blog Web Site
   image:
     src: /logo.png
     alt: VitePress
   actions:
     - theme: brand
       text: My GitHub ➟
-      link: https://github.com/linlei1120
+      link: https://github.com/linlei1120/todeai.github.io
     - theme: alt
       text: 我的工具箱 🔨
       link: /markdown-examples
-    - theme: alt
-      text: 前端面经 🎒
-      link: /interview/h5css-skill
-    - theme: alt
-      text: 支持一下
-      link: https://github.com/linlei1120
 
 features:
   - title: UML设计模式
