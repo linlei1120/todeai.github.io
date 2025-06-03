@@ -151,4 +151,6 @@ module.exports ={
 - **配置步骤二：** 
 ![alt text](static/prettier02.png)
 
-## 2、Husky
+## 2、StyleLint
+
+## 3、Husky

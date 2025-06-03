@@ -52,7 +52,7 @@ export default defineConfig({
           text: '格式化配置规范',
           link: '/devGuide/devFormat',
         },{
-          text: 'Index规范',
+          text: '自定义规范',
           link: '/devGuide/index',
         },{
           text: '常用编码指南',
