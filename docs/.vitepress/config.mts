@@ -49,8 +49,14 @@ export default defineConfig({
           text: '前端开发流程规范',
           link: '/devGuide/devFlow',
         },{
-          text: '模块和加载器规范',
-          link: '/devGuide/jsGuide',
+          text: '格式化配置规范',
+          link: '/devGuide/devFormat',
+        },{
+          text: 'Index规范',
+          link: '/devGuide/index',
+        },{
+          text: '常用编码指南',
+          link: '/devGuide/common',
         }] },
       { text: "工具导航栏", link: "/toolsFiles/tools-list" }
     ],
