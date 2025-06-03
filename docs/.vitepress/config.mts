@@ -1,9 +1,9 @@
 import { defineConfig } from "vitepress";
 
 export default defineConfig({
-  base:'/codery.github.io/',
-  title: "Codery's 的开发文档",
-  description: "Codery's Blog Site",
+  base:'/todeai.github.io/',
+  title: "TodeAI's 的开发文档",
+  description: "TodeAI's Blog Site",
   // header标签里面插入的内容
   head: [["link", { rel: "icon", href: "/favicon.ico" }]],
   themeConfig: {
@@ -43,10 +43,11 @@ export default defineConfig({
     // },
     nav: [
       { text: "首页", link: "/" },
+      { text: "前端开发文档", link: "/frontFiles" },
       { text: "前端开发规范",items:[
         {
-          text: '项目结构规范',
-          link: '/devGuide/index',
+          text: '前端开发流程规范',
+          link: '/devGuide/devFlow',
         },{
           text: '模块和加载器规范',
           link: '/devGuide/jsGuide',
