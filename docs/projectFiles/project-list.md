@@ -1,0 +1,89 @@
+---
+layout: home
+hero:
+  name: 工作项目合集
+features:
+  - icon: 
+      src: /henqing-icon.png
+    title: 横琴深合产业招商平台
+    details: 该项目由深智城集团承建，主要用于高效管控合作区的招商关键信息，通过领导看板呈现招商信息、招商总览、招商动态、招商成果等数据，为合作区招商工作提供管理和决策支撑...
+    link: https://pixso.cn/app/recent
+  - icon:
+      dark: /yunhan-icon.png
+      light: /yunhan-icon-light.png
+    title: 云焓EHS-Tools平台
+    details: 该项目集成了ERP企业管理系统、工作危害分析（JHA）软件、智能巡检(IP)软件、设备完整性管理(MI)软件、作业许可证(PTW)软件、双重预防机制(DRM)软件等工业化工管理软件...
+    link: https://lanhuapp.com/web/#/item/project/stage?tid=df098ad5-43b9-4c9f-a33e-b7a4ff95e742&pid=6bdf9045-93de-4093-ac68-6ee27a5a0e3f
+  - icon:
+      dark: /cec-icon.png
+      light: /cec-icon.png
+    title: 贵州公共交通数字化信用平台
+    details: 该项目是在国家移动金融科技创新试点、贵州省信用引领融资对接服务平台的技术基础上，融合公共交通数字票务与数字营销、数据增信系统技术建立的基于区块链创新建设的数字信用服务平台...
+  - icon:
+      dark: /dushitmin-icon.png
+      light: /dushitmin-icon.png
+    title: 都市通小程序
+    details: 中电信用服务有限公司推出的一款专注于公共服务场景的小程序应用，旨在为用户提供便捷、高效的出行服务。通过整合先进的通信技术和智能化解决方案，都市通系列产品...
+  - icon:
+      dark: /yunshop-icon.png
+      light: /yunshop-icon.png
+    title: 贵州通/重庆市民通云商城
+    details: 该项目作为一站式综合购物平台，致力于为用户提供便捷、安全、多样化的购物体验。商城深度融合了多种支付方式，包括账户支付、通卡支付、微信支付以及混合支付，满足用户不同的支付需求...
+    link: https://lanhuapp.com/web/#/item/project/stage?tid=3644334e-fa5f-4114-afe6-8c460aaf4a05&pid=d7375138-ec6a-4e5f-936d-08ded2cb9731
+  - icon:
+      dark: /hexiaoy-icon.png
+      light: /hexiaoy-icon.png
+    title: 和校园学生公交卡
+    details: 该项目是在国家移动金融科技创新试点、贵州省信用引领融资对接服务平台的技术基础上，融合公共交通数字票务与数字营销、数据增信系统技术建立的基于区块链创新建设的数字信用服务平台...
+  - icon:
+      dark: /lianlian-icon.jpg
+      light: /lianlian-icon.jpg
+    title: 联联玺客周边商城
+    details: 该项目是在国家移动金融科技创新试点、贵州省信用引领融资对接服务平台的技术基础上，融合公共交通数字票务与数字营销、数据增信系统技术建立的基于区块链创新建设的数字信用服务平台...
+  - icon:
+      dark: /24103045rfgk.png
+      light: /24103045rfgk.png
+    title: 贵州通APP
+    details: 提供城市一卡通等各类实体证卡虚拟化、数字市民云卡、数字城市APP、数字经济孵化、大数据增值增信及相关信用服务。在保障信息安全的基础上，帮助场景机构开通移动互联网服务，...
+  - icon:
+      dark: /hedaifu-icon.png
+      light: /hedaifu-icon.png
+    title: 禾大夫APP
+    details: 该项目致力于通过移动互联网连接中药制作厂商、医药企业、基层医疗机构、中医学习者，建立便携高效的药品、中医学习以及多方互通的大健康生态平台，围绕中医药生产、研发...
+  - icon:
+      dark: /zhenheai-icon.jpg
+      light: /zhenheai-icon.jpg
+    title: 诊禾AI经方辅诊系统
+    details: 该项目是基于张仲景《伤寒论》、《金匮要略》为基础研发的中医AI辅助诊断系统，模拟名老中医思维智能辨证开方，为医生临床决策提供参考平台，平台开发出远程会诊、医学社、人工智能辅助诊断...
+  - icon:
+      dark: /caiyaom-icon.ico
+      light: /caiyaom-icon.ico
+    title: 诊禾采药猫小程序
+    details: 该项目为B2B的医药信息服务平台，主要针对中医医馆诊所等提供药品线上采购功能，该产品不仅促进了供应商之间的良性竞争，也为诊所带来了更低的采购成本...
+  - icon:
+      dark: /zhenheyxs-icon.png
+      light: /zhenheyxs-icon.png
+    title: 医学社小程序
+    details: 该项目是作为基层医生中医学术交流以及医患交流平台，超过30万名基层医生从中受益，在国内中医培训行业形成巨大反响...
+  - icon:
+      dark: /guiybuild-icon.png
+      light: /guiybuild-icon.png
+    title: 贵阳市智慧工地监管平台
+    details: 该平台为贵阳市住建局提供了智慧工地数据治理，安全生产监管及劳务人员管理等功能，包括监管系统平台，劳务人员管理APP、可视化大屏等平台...
+  - icon:
+      dark: /icon-pro-aifeng.png
+      light: /icon-pro-aifeng.png
+    title: AI峰收空间站
+    details: 该项目由APP+微信小程序积分商城+数据管理平台组成，该项目作为环保绿色回收类应用产品，可以通过APP回收物品产生积分，再到小程序积分商城进行兑换...
+    link: https://lanhuapp.com/web/#/item/project/stage?tid=7849e91c-7aaa-4b60-8b9f-f4687b4c995f&pid=e555b831-b068-4506-a1f4-b2708175074c
+  - icon:
+      dark: /icon-peo-qzl.png
+      light: /icon-peo-qzl.png
+    title: 黔芝灵商城
+    details: 该项目微信小程序商城+数据管理平台组成，该项目作为酒类产品定制化商城，包含商品采购、团队分销、团队管理、分销结算、仓储管理价格管理、代理咨询等模块...
+    link: https://lanhuapp.com/web/#/item/project/stage?tid=e7ed2af6-ed92-43fa-8b7c-f6691639f4d3&pid=0baf751b-9950-422a-a804-78eb4190e099
+---
+
+## 
+
+
