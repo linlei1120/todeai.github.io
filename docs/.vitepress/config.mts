@@ -42,6 +42,7 @@ export default defineConfig({
     //   },
     // },
     nav: [
+      { text: "首页", link: "/index" },
       { text: "前端开发文档", link: "/frontFiles" },
       { text: "前端开发规范",items:[
         {
