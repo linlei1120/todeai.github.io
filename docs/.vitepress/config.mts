@@ -58,7 +58,11 @@ export default defineConfig({
           text: '常用编码指南',
           link: '/devGuide/common',
         }] },
-      { text: "前端开发日志", link: "/devLog/index" },
+      { text: "前端开发日志",items:[
+        {
+          text: '2025年6月',
+          link: '/devLog/2025年6月',
+        }] },
       { text: "工具导航栏", link: "/toolsFiles/tools-list" }
     ],
 
