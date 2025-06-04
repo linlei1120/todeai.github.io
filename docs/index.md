@@ -11,16 +11,16 @@ hero:
   actions:
     - theme: brand
       text: My GitHub ➟
-      link: https://github.com/linlei1120
+      link: https://github.com/linlei1120/todeai.github.io
     - theme: alt
       text: 我的工具箱 🔨
-      link: /markdown-examples
+      link: /toolsFiles/tools-list
     - theme: alt
       text: 前端技术文档 🎒
       link: /frontFiles/index
     - theme: alt
       text: 支持一下
-      link: https://github.com/linlei1120
+      link: https://github.com/linlei1120/todeai.github.io
 
 features:
   - title: UML设计模式
