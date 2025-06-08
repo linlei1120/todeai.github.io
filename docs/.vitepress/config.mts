@@ -52,6 +52,9 @@ export default defineConfig({
           text: '格式化配置规范',
           link: '/devGuide/devFormat',
         },{
+          text: 'JS/TS编码规范',
+          link: '/devGuide/jsGuide',
+        },{
           text: '自定义规范',
           link: '/devGuide/index',
         },{
