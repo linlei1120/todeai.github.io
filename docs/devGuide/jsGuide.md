@@ -1,351 +1,197 @@
-# 模块和加载器规范
+# JS/TS编码规范
 
-## 简介
+## 1、变量类型使用
 
-该文档主要的设计目标是定义前端代码的模块规范，便于开发资源的共享和复用。该文档
-在 [amdjs](https://github.com/amdjs/amdjs-api/wiki) 规范的基础上，进行了更细粒度的规范化。
+### 1.1 类型
+### JS/TS 类型
+| 类型       | 示例                | 规范要点                                                                 |
+|------------|---------------------|--------------------------------------------------------------------------|
+| `boolean`  | `true`, `false`     | 避免隐式转换，明确使用 `===` 比较                                         |
+| `number`   | `42`, `3.14`, `NaN` | 注意 `NaN` 需用 `isNaN()` 检测，大数用 `BigInt(ES2020)`                           |
+| `string`   | `'text'`, `` `模板` `` | 优先使用模板字符串，避免 `new String()` 对象形式                          |
+| `null`     | `null`              | 主动赋空值时使用，`typeof null` 返回 `object`（历史遗留问题）             |
+| `undefined`| `undefined`         | 变量未赋值时的默认值，非主动赋值时出现                                     |
+| `symbol`   | `Symbol('id')`      | 用作唯一对象属性键，适用于防止属性名冲突的场景                             |
+| `bigint`   | `9007199254740991n` | ES2020发布通过在整数文字末尾添加n解决大整数精度问题，不能与 `number` 混用                                   |
+| `any`             | `let foo: any = 'text'`       | **尽量避免**，失去类型检查优势。可用 `unknown` 替代                        |
+| `unknown`         | `let bar: unknown = fetch()`  | 类型安全版的 `any`，使用前需类型断言或收窄                                  |
+| `void`            | `function log(): void {}`     | 表示无返回值，与 `undefined` 区别在于可忽略返回值                           |
+| `never`           | `function fail(): never {}`   | 表示永远不应到达的路径（抛出异常/无限循环）                                 |
+| 
 
-### 编撰
+###  1.2 类型检测
+ 类型检测优先使用 typeof。对象类型检测使用 instanceof。null 或 undefined 的检测使用 == null。[建议]
 
-李玉北、erik、黄后锦、王杨、张立理、赵雷、陈新乐、顾轶灵、林志峰、刘恺华。
+- #### 示例
+    ```js
+    // string
+    typeof variable === 'string'
 
-本文档由`商业运营体系前端技术组`审校发布。
+    // number
+    typeof variable === 'number'
 
-### 要求
+    // boolean
+    typeof variable === 'boolean'
 
-在本文档中，使用的关键字会以中文+括号包含的关键字英文表示： 必须(MUST) 。关键字"MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL"被定义在rfc2119中。
+    // Function
+    typeof variable === 'function'
 
-## 模块定义
+    // Object
+    typeof variable === 'object'
 
-模块定义 *必须(MUST)* 采用如下的方式：
+    // RegExp
+    variable instanceof RegExp
 
-```javascript
-define( factory );
-```
+    // Array
+    variable instanceof Array
 
-推荐采用`define(factory)`的方式进行`模块定义`。使用匿名`moduleId`，从而保证开发中模块与路径相关联，有利于模块的管理与整体迁移。
+    // null
+    variable === null
 
-SHOULD NOT使用如下的方式：
+    // null or undefined
+    variable == null
 
-```javascript
-define( moduleId, deps, factory );
-```
+    // undefined
+    typeof variable === 'undefined'
+    ```
+### 1.3 类型转换
+ 转换成 `string` 时，使用 `+ ''`。[建议]
 
-### moduleId
+- ### 示例
+    ```js
+    // good
+    num + '';
 
-`moduleId`的格式应该符合 [amdjs](https://github.com/amdjs/amdjs-api/wiki/AMD) 中的约束条件。
+    // bad
+    new String(num);
+    num.toString();
+    String(num);
+    ```
+    转换成 `number` 时，通常使用`+`。[建议]
 
-1. `moduleId`的类型应该是`string`，并且是由`/`分割的一些`term`来组成。例如：`this/is/a/moduleId`。
-2. `term`应该符合`[a-zA-Z0-9_]+`这个规则。
-3. `moduleId`不应该有`.js`后缀。
-4. `moduleId`应该跟文件的路径保持一致。
+    ```js
+    // good
+    +str;
 
-`moduleId`在实际使用（如`require`）的时候，又可以分为如下几种类型：
+    // bad
+    Number(str);
+    ```
+`string` 转换成 `number`，要转换的字符串结尾包含非数字并期望忽略时，使用 `parseInt`，且使用 `parseInt` 时，必须指定进制。[建议]
 
-1. `relative moduleId`：是以`./`或者`../`开头的`moduleId`。例如：`./foo`, `../../bar`。
-2. `top-level moduleId`：除上面两种之外的`moduleId`。例如`foo`，`bar/a`，`bar/b`。
+- #### 示例
+    ```js
+    // string转化为number
+    var width = '200px';
 
-在模块定义的时候，`define`的第一个参数如果是`moduleId`， *必须(MUST)* 是`top-level moduleId`， *不允许(MUST NOT)* 是`relative moduleId`。
+    // 参数1：被解析的值；参数2：被解析值的进制（10进制）
 
-### factory
+    // bad
+    parseInt(str);
 
-#### AMD风格与CommonJS风格
+    // good
+    parseInt(width, 10); // 200
+    ```
+转换成 boolean 时，使用 !!。[建议]
 
-模块的`factory`有两种风格，`AMD推荐的风格`和`CommonJS的风格`。`AMD推荐的风格`通过返回一个对象做为模块对象，`CommonJS的风格`通过对`module.exports`或`exports的属性`赋值来达到暴露模块对象的目的。
+- #### 示例
 
-*建议(SHOULD)* 使用`AMD推荐的风格`，其更符合Web应用的习惯，对模块的数据类型也便于管理。
+    ```js
+    let num = 3.14;
+    let num1 = '';
 
+    !!num; // true
+    !!num1; // false
+    ```
+`number` 去除小数点，使用 `Math.floor / Math.round / Math.ceil`。
+- #### 示例
 
-```javascript
-// AMD推荐的风格
-define( function( require ) {
-    return {
-        method: function () {
-            var foo = require("./foo/bar");
-            // blabla...
-        }
-    };
-});
+    ```js
+    // good
+    var num = 3.14;
+    // 向下取整
+    Math.floor(num); // 3
 
-// CommonJS的风格
-define( function( require, exports, module ) {
-    module.exports = {
-        method: function () {
-            var foo = require("./foo/bar");
-            // blabla...
-        }
-    };
-});
-```
+    // 向上取整
+    Math.ceil(num); // 4
 
-#### 参数
+    // 四舍五入取整
+    Math.round(num); // 3
 
-模块的`factory`默认有三个参数，分别是`require`, `exports`, `module`。
+    // bad
+    var num = 3.14;
+    parseInt(num, 10); // 3
+    ```
 
-```javascript
-define( function( require, exports, module ) {
-    // blabla...
-});
-```
+### 1.4 变量
+#### 1.4.1 变量声明方式对比
+| 关键字       | 作用域     | 是否提升 | 可重复声明 | 规范适用场景                         |
+|--------------|------------|----------|------------|--------------------------------------|
+| `var`        | 函数作用域 | ✅        | ✅          | **遗留代码**（现代项目应避免使用）    |
+| `let`        | 块级作用域 | ❌        | ❌          | 需要重新赋值的变量（循环计数器等）    |
+| `const`      | 块级作用域 | ❌        | ❌          | **默认选择**（常量、对象引用等）      |
+| `function`   | 块级作用域 | ✅        | ✅          | 函数声明（优先使用 const + 箭头函数） |
 
-使用`AMD推荐风格`时，`exports`和`module`参数可以省略。
+#### 1.4.2 变量命名
+| 类型               | 命名风格       | 示例                      |
+|--------------------|----------------|---------------------------|
+| 普通变量/参数      | camelCase/语义单词      | `userName`, `maxCount`，`price`    |
+| 常量               | UPPER_SNAKE    | `API_TIMEOUT`, `COLORS`   |
+| 类/构造函数        | PascalCase     | `class UserModel`         |
+| Boolean 类型变量   | is/has/can 开头 | `isVisible`, `hasLicense` |
 
-```javascript
-define( function( require ) {
-    // blabla...
-});
-```
+---
+- **示例：**
 
-开发者 *不允许(MUST NOT)* 修改`require`, `exports`, `module`参数的形参名称。下面就是错误的用法：
+    ```js
+        firstName = "John";
+        lastName = "Doe";
 
-```javascript
-define( function( req, exp, mod ) {
-    // blablabla...
-});
-```
+        price = 19.90;
+        tax = 0.20;
 
-#### 类型
+        fullPrice = price + (price * tax);
+    ```
 
-`factory`可以是任何类型，一般来说常见的就是三种类型`function`, `string`, `object`。当`factory`不是`function`时，将直接做为模块对象。
+#### 1.4.3 声明优先级原则
 
-```javascript
-// src/foo.js
-define( "hello world. I'm {name}" );
+- **首选 `const`**  
+  任何不需要重新赋值的变量都应使用 `const`，即使对于对象和数组（因为引用不变）：
 
-// src/bar.js
-define( {"name": "fe"} );
-```
+    ```javascript
+  const PI = 3.14159;
+  const config = { apiUrl: '/endpoint' };
+    ```
+- **次选 `let`**  
+仅当需要重新赋值时使用：
+    ```typescript
+  let count = 0;
+  count = 1; // 允许重新赋值
+    ```
 
-上面这两种写法等价于：
+- **禁用 `var`**  
+  避免变量提升和函数作用域导致的逻辑问题：
+    ```javascript
+  // ❌ 错误示例
+  for (var i = 0; i < 10; i++) { /*...*/ }
+  console.log(i); // 仍然可以访问（不符合预期）
+    ```
+#### 1.4.4 TypeScript 增强规范
+#### 优先让 TS 自动推断类型，仅在以下情况手动添加类型：
+- 避免冗余类型
+    ```ts
+    //  冗余 bad
+    const count: number = 0;
 
-```javascript
-// src/foo.js
-define( function(require) {
-    return "hello world. I'm {name}";
-});
+    //  自动推断 good
+    const count = 0;
 
-// src/bar.js
-define( function(require) {
-    return {"name": "fe"};
-} );
-```
-
-#### require
-
-`require`这个函数的参数是`moduleId`，通过调用`require`我们就可以引入其他的模块。`require`有两种形式：
-
-```javascript
-require( {string} moduleId );
-require( {Array} moduleIdList, {Function} callback );
-```
-
-`require`存在`local require`和`global require`的区别。
-
-在`factory`内部的`require`是`local require`，如果`require`参数中的`moduleId`的类型是`relative moduleId`，那么相对的是当前`模块id`。
-
-在全局作用域下面调用的`require`是`global require`，`global require`不支持`relative moduleId`。
-
-```javascript
-// src/foo.js
-define( function( require ) {
-    var bar = require("./bar"); // local require
-});
-
-// src/main.js
-// global require
-require( ['foo', 'bar'], function ( foo, bar ) {     
-    // blablalbla...
-});
-```
-
-#### exports
-
-`exports`是使用`CommonJS风格`定义模块时，用来公开当前模块对外提供的API的。另外也可以忽略`exports`参数，直接在`factory`里面返回自己想公开的API。例如下面三种写法功能是一样的：
-
-```javascript
-define( function( require, exports, module ) {
-    exports.name = "foo";
-});
-
-define( function( require, exports, module ) {
-    return { "name" : "foo" };
-});
-
-define( function( require, exports, module ) {
-    module.exports.name = "foo";
-});
-```
-
-`module`是当前模块的一些信息，一般不会用到。其中`module.exports === exports`。
-
-### dependencies
-
-模块和模块的依赖关系需要通过`require`函数调用来保证。
-
-```javascript
-// src/js/ui/Button.js
-define( function( require, exports, module ) {
-    require("css!../../css/ui/Button.css");
-    require("tpl!../../tpl/ui/Button.tpl.html");
-
-    var Control = require("ui/Control");
-    
-    /**
-     * @constructor
-     * @extends {Control}
-     */
-    function Button() {
-        Control.call(this);
-
-        var foo = require("./foo");
-        foo.bar();
+    //  需要明确契约的公共 API good
+    interface User {
+        id: number;
+        name: string;
     }
-    baidu.inherits(Button, Control);
+    //  复杂初始化场景 good
+    let items: Array<string | number> = [];
+    items = ['text', 42];
 
-    ...
-
-    // exports = Button;
-    // return Button;
-});
-```
-
-具体实现的时候是通过正则表达式分析`factory`的函数体来识别出来的。因此为了保证识别的正确率，请尽量
-避免在函数体内定义`require`变量或者`require`属性。例如不要这么做：
-
-```javascript
-var require = function(){};
-var a = {require:function(){}};
-a.require("./foo");
-require("./bar");
-```
-
-<a name="config"></a>
-## 模块加载器配置
-
-`AMD Loader`应该支持如下的配置，更新配置的时候，写法如下：
-
-```html
-<script src="${amdloader.js}"></script>
-<script>
-require.config({
-    ....
-});
-</script>
-```
-
-### baseUrl
-
-类型应该是`string`。在`ID-to-path`的阶段，会以`baseUrl`作为根目录来计算。如果没有配置的话，就默认以当前页面所在的目录为`baseUrl`。
-如果`baseUrl`的值是`relative`，那么相对的是当前页面，而不是`AMD Loader`所在的位置。
-
-### paths
-
-类型应该是`Object.<string, string>`。它维护的是`moduleId`前缀到路径的映射规则。这个对象中的`key`应该是`moduleId`的前缀，`value`如果是一个相对路径的话，那么相对的是`baseUrl`。当然也可以是绝对路径的话，例如：`/this/is/a/path`，`//www.google.com/this/is/a/path`。
-
-```javascript
-{
-    baseUrl: '/fe/code/path',
-    paths: {
-        'ui': 'esui/v1.0/ui',
-        'ui/Panel': 'esui/v1.2/ui/Panel',
-        'tangram': 'third_party/tangram/v1.0',
-        'themes': '//www.baidu.com/css/styles/blue'
-    }
-}
-```
-
-在`ID-to-path`的阶段，如果`模块`或者`资源`是以`ui`, `ui/Panel`, `tangram`开头的话，那么就会去配置指定的地方去加载。例如：
-
-* `ui/Button` => `/fe/code/path/esui/v1.0/ui/Button.js`
-* `ui/Panel` => `/fe/code/path/esui/v1.2/ui/Panel.js`
-* `js!tangram` => `/fe/code/path/third_party/tangram/v1.0/tangram.js`
-* `css!themes/base` => `//www.baidu.com/css/styles/blue/base.css`
-
-另外，需要支持为插件指定不同的的`paths`，语法如下：
-
-```javascript
-{
-    baseUrl: '/fe/code/path',
-    paths: {
-        'css!': '//www.baidu.com/css/styles/blue',
-        'css!foo': 'bar',
-        'js!': '//www.google.com/js/gcl',
-        'js!foo': 'bar'
-    }
-}
-```
-
-## 模块加载器插件
-
-该文档不限定使用何种`AMD Loader`，但是一个`AMD Loader`应该支持至少三种插件（css，js，tpl）才能满足我们的业务需求。
-
-### 插件语法
-
-    [Plugin Module ID]![resource ID]
-
-`Plugin Module Id`是插件的`moduleId`，例如`css`，`js`，`tpl`等等。`!`是分割符。
-
-`resource ID`是`资源Id`，可以是`top-level`或者`relative`。如果`resource ID`是`relative`，那么相对的是当前`模块的Id`，而不是当前`模块Url`。例如：
-
-```javascript
-// src/Button.js
-define( function( require, exports, module ){
-    require( "css!./css/Button.css" );
-    require( "css!base.css" );
-    require( "tpl!./tpl/Button.tpl.html" );
-});
-```
-
-如果当前模块的路径是`${root}/src/ui/Button.js`，那么该模块依赖的`Button.css`和`Button.tpl.html`的路径就应该分别是`${root}/src/css/ui/Button.css`，`${root}/src/tpl/Button.tpl.html`；该模块依赖的`base.css`的路径应该是`${baseUrl}/base.css`。
-
-### css插件
-
-参考上面的示例。如果`resource ID`省略后缀名的话，默认是`.css`；如果有后缀名，以具体的后缀名为准。例如：`.less`。
-
-### js插件
-
-用来加载不符合该文档规范的js文件，例如`jquery`，`tangram`等等。例如：
-
-```javascript
-// src/js/ui/Button.js
-define( function( require, exports, module ) {
-    require( "js!jquery" );
-    require( "js!./tangram" );
-});
-```
-
-### tpl插件
-
-如果项目需要前端模板，需要通过tpl插件加载。tpl插件由模板引擎提供方实现。插件的语法应该跟上述`js`，`css`插件的语法保持一致，例如：
-
-```javascript
-require( "tpl!./foo.tpl.html" );
-```
-
-## FAQ
-
-### 为什么不能采用define(moduleId, deps, factory)来定义模块？
-
-`define(moduleId, deps, factory)`这种写法，很容易出现很长的deps，影响代码的风格。
-
-```javascript
-define(
-    "module/id", 
-    [
-        "module/a", 
-        "module/b", 
-        "module/c"
-    ], 
-    function ( require ) {
-        // blabla...
-    }
-);
-```
-
-构建工具对代码进行处理和编译时，允许将代码编译成这种风格，明确硬依赖。
-
-### 相对于模块的Id和相对于模块Url有什么区别？
-
-还是看 [erik的解释吧](https://github.com/ecomfe/edp/issues/13#issuecomment-14383810)
-
-
+    ```
