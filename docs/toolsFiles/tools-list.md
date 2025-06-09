@@ -4,10 +4,16 @@ hero:
   name: 开发工具合集
 features:
   - icon:
+      dark: /tools/loaders.png
+      light: /tools/loaders.png
+    title: Loaders
+    details: 我们在浏览网站/应用程序时可能面临的一个普遍情况是等待一些进展或加载一些东西。最简单的解决方案是创建一个包含此类加载器/旋转器集合的库。此库没有映像依赖项。它使用纯CSS开发...
+    link: https://cssloaders.github.io/
+  - icon:
       dark: /tools/vueuse.svg
       light: /tools/vueuse.svg
     title: VueUse
-    details: Vue 组合式工具集VueUse拥有200+ 函数，专为 Vue 3 设计，充分利用其最新功能，使用 TypeScript 编写，带有完整的 TS 文档，与服务器端渲染/生成完美配合，支持各种插件，如 Router、Firebase、RxJS 等...
+    details: Vue 组合式工具集VueUse拥有200+ 函数，专为 Vue 3 设计，充分利用其最新功能，使用 TypeScript 编写，带有完整的 TS 文档，与服务器端渲染/生成完美配合，支持各种插件...
     link: https://vueuse.nodejs.cn/
   - icon:
       dark: /tools/vitest.svg
