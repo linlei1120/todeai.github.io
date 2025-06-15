@@ -1,9 +1,9 @@
 # JS/TS编码规范
 
-## 1、变量类型使用
+## 一、变量类型使用
 
-### 1.1 类型
-### JS/TS 类型
+### 1、 类型
+### 1.21 JS/TS 类型
 | 类型       | 示例                | 规范要点                                                                 |
 |------------|---------------------|--------------------------------------------------------------------------|
 | `boolean`  | `true`, `false`     | 避免隐式转换，明确使用 `===` 比较                                         |
@@ -20,7 +20,7 @@
 | 
 
 ###  1.2 类型检测
- 类型检测优先使用 typeof。对象类型检测使用 instanceof。null 或 undefined 的检测使用 == null。[建议]
+ 类型检测优先使用 `typeof`,对象类型检测使用 `instanceof`,`null` 或 `undefined` 的检测使用 `== null`。[:memo:建议]
 
 - #### 示例
     ```js
@@ -55,7 +55,7 @@
     typeof variable === 'undefined'
     ```
 ### 1.3 类型转换
- 转换成 `string` 时，使用 `+ ''`。[建议]
+ 转换成 `string` 时，使用 `+ ''`。[:memo:建议]
 
 - ### 示例
     ```js
@@ -67,7 +67,7 @@
     num.toString();
     String(num);
     ```
-    转换成 `number` 时，通常使用`+`。[建议]
+    转换成 `number` 时，通常使用`+`。[:memo:建议]
 
     ```js
     // good
@@ -76,7 +76,7 @@
     // bad
     Number(str);
     ```
-`string` 转换成 `number`，要转换的字符串结尾包含非数字并期望忽略时，使用 `parseInt`，且使用 `parseInt` 时，必须指定进制。[建议]
+`string` 转换成 `number`，要转换的字符串结尾包含非数字并期望忽略时，使用 `parseInt`，且使用 `parseInt` 时，必须指定进制。[:memo:建议]
 
 - #### 示例
     ```js
@@ -91,7 +91,7 @@
     // good
     parseInt(width, 10); // 200
     ```
-转换成 boolean 时，使用 !!。[建议]
+转换成 `boolean` 时，使用 `!!`。[:memo:建议]
 
 - #### 示例
 
@@ -194,3 +194,130 @@
     items = ['text', 42];
 
     ```
+
+
+### 二、 函数定义规范
+
+#### 2.1  优先使用箭头函数 
+&emsp;&emsp;箭头函数是ES6引入的简洁函数语法，主要特点包括无自己的`this`和`arguments`绑定（继承外层上下文）、不可作为构造函数。但是箭头函数更加简洁，
+
+&emsp;&emsp;:heavy_check_mark:**适合用于**: 需要保持`this`一致性的回调（如事件处理、定时器）、短小的数组方法（map/filter）、以及需要避免`this`绑定问题的场景；
+
+&emsp;&emsp;:x:**不适合用于**: 需要动态`this`的对象方法、构造函数或需要函数提升的场景。
+```javascript
+//  Good：简洁语法 + 自动绑定外层 this
+const calculate = (x, y) => x * y;
+
+// Good: 回调场景更清晰
+button.addEventListener('click', () => {
+  validateForm();
+});
+```
+
+&emsp;&emsp;:warning:**特殊情况使用`function`声明：**
+```javascript
+// 1. 需要动态上下文的函数(获取this)
+document.getElementById('btn').addEventListener('click', function() {
+  console.log(this); // 指向触发元素
+});
+
+// 2. 构造函数（箭头函数不能new）
+function Person(name) {
+  this.name = name;
+}
+```
+| 特性                    | 普通函数 | 箭头函数 |
+|-----------------------|--------|--------|
+| 绑定自己的`this`         | ✓      | ✗      |
+| 可作为构造函数            | ✓      | ✗      |
+| 有`arguments`对象       | ✓      | ✗      |
+| 有`prototype`属性      | ✓      | ✗      |
+| 支持`yield`(生成器函数)   | ✓      | ✗      |
+| 上下文绑定的`super`      | ✓      | ✗      |
+| 语法简洁度              | ✗      | ✓      |
+
+#### 2.2 参数默认值规范
+```javascript
+// Good: 推荐：ES6默认值语法
+const createUser = (name, role = 'member', isActive = true) => ({...});
+
+// Good: 默认值可以是表达式
+const fetch = (url, cacheTime = 60 * 5) => {...} // 5分钟缓存
+
+// ⚠️ 注意事项：
+// - 默认参数应放在参数列表末尾
+// - 避免使用 || 运算符（0/false会被覆盖）
+const setVolume = (level = 50) => {...} 
+```
+
+#### 2.3 参数解构最佳实践
+```javascript
+// Good: 对象解构：直接获取深层属性
+const renderProfile = ({ 
+  user: { 
+    name, 
+    avatar = '/default.png'  // 嵌套默认值
+  }, 
+  theme = 'light' 
+}) => {...}
+
+// Good: 数组解构：交换变量/忽略元素
+const rotateCoordinates = ([x, y]) => [y, -x];
+const [, secondItem] = getItems();
+
+// ⚠️ 需显式命名参数时：
+const handleEvent = (payload) => {
+  const { type, data } = payload;  // 明确声明参数来源
+  ...
+}
+```
+
+#### 2.4 补充最佳实践 
+&emsp; ① **函数长度控制**
+
+&emsp;&emsp; 单功能原则：函数不超过20行 :bangbang:
+
+&emsp;&emsp; 超过3个参数时改用对象参数：:bangbang:
+
+ ```js
+    // Good：对象传参清晰明了
+    const updateUser = ({ id, name, role, status }) => {...}
+
+    // Bad： 超过3个难以阅读
+    const updateUser = (id, name, role, status) => {...}
+```
+
+&emsp; ② **纯函数优先**
+
+&emsp;&emsp;纯函数是函数式编程中的核心概念，具备两个关键特性:相同输入必定得到相同输出、不产生副作用；
+   ```javascript
+   // Good： 无副作用：相同输入始终返回相同输出
+   const calculateTax = (income, rate) => income * rate;
+   
+   // Bad： 避免：修改外部状态
+   let total = 0;
+   const addToTotal = (num) => total += num;
+   ```
+
+&emsp; ③ **返回值一致性**
+   ```javascript
+   // Good： 明确返回类型
+   const parseInput = (input) => {
+     if (!input) return null;     // 统一返回null
+     return JSON.parse(input);
+   }
+   ```
+
+&emsp; ④ **异步函数标识**
+   ```javascript
+   // Good： 使用async/await代替回调
+   const loadData = async (url) => {
+     try {
+       const res = await fetch(url);
+       return res.json();
+     } catch (e) {
+       logError(e);
+       return [];
+     }
+   }
+   ```

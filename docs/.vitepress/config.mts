@@ -58,7 +58,7 @@ export default defineConfig({
           text: '自定义规范',
           link: '/devGuide/index',
         },{
-          text: '常用编码指南',
+          text: '最佳实践指南',
           link: '/devGuide/common',
         }] },
       { text: "前端开发日志",items:[
