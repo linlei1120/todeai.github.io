@@ -23,10 +23,16 @@ hero:
       link: https://github.com/linlei1120/todeai.github.io
 
 features:
+  - title: 数据结构大全
+    icon:
+      src: /icon_feature28.svg
+    details: 数据结构（Data Structure） 是计算机中存储、组织和管理数据的方式，旨在帮助人们可以使用特定操作高效访问数据且节省存储空间，数据结构通常分为：线性数据结构、非线性数据结构和高级结构，其物理存储方式包括连续存储...
+    link: https://carlosme.fun
+    linkText: 查看详情
   - title: UML设计模式
     icon:
       src: /icon_feature21.svg
-    details: UML（Unified Modeling Language，统一建模语言），是一种用于软件系统分析和设计的语言工具，用于帮助软件开发人员进行思考和记录思路的结果UML本身是一套符号的规定，通过这些符号，来描述软件模型中各个元素之间的关系；比如类...
+    details: UML（Unified Modeling Language，统一建模语言），是一种用于软件系统分析和设计的语言工具，用于帮助软件开发人员进行思考和记录思路的结果UML本身是一套符号的规定，通过这些符号，来描述软件模型中各个元素之间的关系...
     link: /UML/createPattern.md
     linkText: 查看详情
   - title: SOLID设计原则
@@ -65,12 +71,6 @@ features:
     details: PWA（渐进式Web应用）生态包括Service Workers、Web App Manifest、响应式设计、离线支持、推送通知和应用缓存等技术，旨在提升Web应用的性能和用户体验，接近原生应用的功能。
     link: https://carlosme.fun
     linkText: 
-  - title: PWA 周边生态
-    icon:
-      src: /icon_feature28.svg
-    details: PWA（渐进式Web应用）生态包括Service Workers、Web App Manifest、响应式设计、离线支持、推送通知和应用缓存等技术，旨在提升Web应用的性能和用户体验，接近原生应用的功能。
-    link: https://carlosme.fun
-    linkText: 查看详情
 ---
 <!-- 添加到md文章末尾 -->
 <confetti />
