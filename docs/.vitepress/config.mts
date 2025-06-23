@@ -43,7 +43,11 @@ export default defineConfig({
     // },
     nav: [
       { text: "首页", link: "/index" },
-      { text: "前端开发文档", link: "/frontFiles" },
+      { text: "前端开发文档",items:[
+        {
+          text: 'Hybrid APP开发',
+          link: '/frontFiles/Hybrid/index',
+        }]  },
       { text: "前端开发规范",items:[
         {
           text: '前端开发流程规范',
