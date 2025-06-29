@@ -102,9 +102,9 @@
 
 ③ nvue 页面的布局排列方向默认为竖排（column），可在manifest.json配置中修改；
 
-④ 文字内容，必须、只能在<text>组件下；且只有该标签可以设置字体大小，字体颜色；
+④ 文字内容，必须、只能在`<text>`组件下；且只有该标签可以设置字体大小，字体颜色；
 
-⑤ 不支持在css里写背景图background-image，可使用<image>标签控制层级；
+⑤ 不支持在css里写背景图background-image，可使用`<image>`标签控制层级；
 
 ⑥ css选择器支持的比较少，只能使用 class 选择器；
 
