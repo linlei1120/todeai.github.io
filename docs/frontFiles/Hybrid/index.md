@@ -59,3 +59,99 @@
 > - **性能排序**：自绘引擎 ≈ 原生开发 > 原生控件渲染 > WebView  
 
 ---
+
+#### **二、UniAPP框架开发APP**
+
+#### **1. 框架简介及优势**
+##### (1) 概述  
+&emsp;&emsp;uni-app 是高效易用的跨平台开发框架，一次开发即可同时编译 iOS、Android 和小程序。它基于 WebView 和 Weex 双渲染引擎，统一封装了蓝牙、扫码等原生能力（H5+ API），弥补了传统 Weex/React Native API 不足的问题，大幅减少原生开发依赖。uni-app 拥有丰富的插件市场，显著提升开发效率。uni-app目前版本成熟，生态资源丰富，是当今主流的开发框架，案例众多。
+![alt text](image.png)
+
+
+
+#### **2、 nvue文件**
+#### (1) 概述  
+&emsp;&emsp;uni-app在App端支持两种渲染模式：vuew文件使用WebView渲染，而nvue(即native vue)文件采用基于 weex 改进的原生渲染引擎，开发者可混合使用这两种页面。
+
+&emsp;&emsp;nvue虽然支持跨平台编译到H5和小程序，但因CSS语法受限，更适合App开发。相比传统Weex仅提供渲染能力而API匮乏（依赖原生协作），uni-app通过扩展原生API（如蓝牙、推送等）和完善的插件生态，让前端开发者能独立完成全功能App开发，配合云打包等服务，显著提升效率、降低成本。
+
+#### (2) 优缺点
+① 原生高性能渲染
+
+② 增强的内置组件
+
+- app专业扫码组件
+- 高性能长列表滚动
+- 复杂下拉刷新
+- 高性能瀑布流式布局
+- 软键盘定制
+- 原生组件层级覆盖（解决 map、video 等原生视图遮挡问题）
+- 专用live-pusher直播推流组件
+[参考文档](https://uniapp.dcloud.net.cn/component/list.html)
+
+**缺点**
+
+① CSS 支持受限
+
+② Canvas 性能较差
+
+#### (3) nvue开发与vue开发的常见区别
+① nvue 页面控制显隐只可以使用v-if不可以使用v-show；
+
+② nvue 页面只能使用flex布局，不支持其他布局方式；
+
+③ nvue 页面的布局排列方向默认为竖排（column），可在manifest.json配置中修改；
+
+④ 文字内容，必须、只能在<text>组件下；且只有该标签可以设置字体大小，字体颜色；
+
+⑤ 不支持在css里写背景图background-image，可使用<image>标签控制层级；
+
+⑥ css选择器支持的比较少，只能使用 class 选择器；
+
+⑦ class 进行绑定时只支持数组语法；
+
+⑧ 在 App.vue 中定义的全局js变量不会在 nvue 页面生效。globalData和vuex是生效的；
+
+⑨ 目前不支持在 nvue 页面使用 typescript/ts；
+
+⑩ 仍然强烈建议在nvue页面使用原生导航栏；
+
+
+#### **3、 APP打包**  
+&emsp;&emsp;uni-app提供本地和云端两种打包方式。云打包分为两种模式：① 安心打包（不传代码和证书）；②针对无Mac设备的传统云打包（临时上传证书和代码至官方服务器后立即删除）。云打包服务旨在降低原生开发门槛，帮助没有Mac的前端开发者直接生成iOS/Android安装包。
+
+[安心打包配置参考文档](https://ask.dcloud.net.cn/article/37979)
+
+**注意：**
+- App打包时，注意如果涉及三方sdk，需进行申请并在manifest.json里配置，否则相关功能无法使用。
+
+- iOS App打包需要向Apple申请证书
+
+#### **4、 APP通用模块**  
+
+ &emsp;&emsp;APP 开发中常用的功能模块，涵盖登录、推送、支付、设备交互等核心需求，具体模板包括：
+ 
+| **功能模块**        | **功能说明**                                                                 | **参考文档**                                                                 |
+|---------------------|-----------------------------------------------------------------------------|-----------------------------------------------------------------------------|
+| **第三方登录**       | 支持微信、QQ、微博、Apple、Google等快速登录                                  | [uni-id 登录体系](https://doc.dcloud.net.cn/uniCloud/uni-id/app.html) |
+| **消息推送**         | 实现App消息推送（通知栏、透传），支持个推、极光、厂商通道（华为/小米/OPPO等）   | [UniPush 推送](https://uniapp.dcloud.net.cn/unipush-v2.html)|
+| **分享**            | 调用微信、QQ、微博等App的社交分享功能                                        | [uni-share 分享](https://uniapp.dcloud.net.cn/api/plugins/share.html) | |
+| **支付**            | 集成微信支付、支付宝支付、Apple Pay 等                                       | [uni-pay 统一支付](https://uniapp.dcloud.net.cn/uniCloud/uni-pay.html) |
+| **地图与定位**       | 提供地图显示（高德、Google Map）、定位、路线规划等                            | [uni-map 地图组件](https://uniapp.dcloud.net.cn/component/map) |
+| **文件上传/下载**    | 支持本地文件上传至云存储、下载文件                                          | [uniCloud 云存储](https://uniapp.dcloud.net.cn/uniCloud/storage.html) 
+| **扫码**            | 支持二维码、条形码扫描（兼容H5/App）                                         | [uni.scanCode](https://uniapp.dcloud.net.cn/api/system/barcode.html) |
+| **音频/视频播放**    | 播放本地或在线音视频、直播推流                                               | [video 组件](https://uniapp.dcloud.net.cn/component/video.html)、[live-pusher](https://uniapp.dcloud.net.cn/component/live-pusher.html) |
+| **相机拍照/录像**    | 调用相机拍照、录制视频、自定义裁剪                                          | [uni.chooseImage](https://uniapp.dcloud.net.cn/api/media/image.html) |
+| **蓝牙设备交互**     | 连接蓝牙设备、收发数据                                                      | [uni蓝牙API](https://uniapp.dcloud.net.cn/api/system/bluetooth.html) |
+| **指纹/Face ID**     | 支持生物识别验证（指纹、面部识别）                                           | [uni生物认证](https://uniapp.dcloud.net.cn/api/system/biometric.html) |
+| **国际化（i18n）**   | 多语言切换、文本国际化                                                      | [uni-i18n](https://uniapp.dcloud.net.cn/tutorial/i18n.html) |
+| **数据缓存**         | 本地缓存管理（如购物车数据、用户历史记录）                                   | [uni.setStorage](https://uniapp.dcloud.net.cn/api/storage/storage.html) |
+| **WebView 嵌入**     | 在App内嵌入Web页面                                                          | [web-view组件](https://uniapp.dcloud.net.cn/component/web-view.html) |
+| **统计与分析**       | 用户行为统计（如友盟、Google Analytics）                                     | [uni统计](https://uniapp.dcloud.net.cn/tutorial/statistics.html) |
+| **广告接入**         | 集成广告模块（如开屏广告、激励视频广告）                                     | [uni-AD](https://uniapp.dcloud.net.cn/component/ad.html) |
+| **数据图表**         | 绘制折线图、饼图等数据可视化图表                                            | [uCharts](https://ext.dcloud.net.cn/plugin?id=271) |
+| **AR/VR 增强现实**   | 支持AR（如3D模型、物体识别）、VR场景                                         | [WebXR](https://uniapp.dcloud.net.cn/api/AR.html) |
+| **AI能力**           | 接入OCR识别、语音合成、人脸识别等AI能力                                      | [uni-AI](https://uniapp.dcloud.net.cn/tutorial/ai.html) |
+
+#### **三、前期准备工作**
+
