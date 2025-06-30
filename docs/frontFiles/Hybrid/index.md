@@ -76,51 +76,76 @@
 &emsp;&emsp;nvue虽然支持跨平台编译到H5和小程序，但因CSS语法受限，更适合App开发。相比传统Weex仅提供渲染能力而API匮乏（依赖原生协作），uni-app通过扩展原生API（如蓝牙、推送等）和完善的插件生态，让前端开发者能独立完成全功能App开发，配合云打包等服务，显著提升效率、降低成本。
 
 #### (2) 优缺点
-① 原生高性能渲染
+&emsp; ① 原生高性能渲染
 
-② 增强的内置组件
+&emsp; ② 增强的内置组件
 
-- app专业扫码组件
-- 高性能长列表滚动
-- 复杂下拉刷新
-- 高性能瀑布流式布局
-- 软键盘定制
-- 原生组件层级覆盖（解决 map、video 等原生视图遮挡问题）
-- 专用live-pusher直播推流组件
+&emsp;&emsp;⭐ app专业扫码组件
+
+&emsp;&emsp;⭐ 高性能长列表滚动
+
+&emsp;&emsp;⭐ 复杂下拉刷新
+
+&emsp;&emsp;⭐ 高性能瀑布流式布局
+
+&emsp;&emsp;⭐软键盘定制
+
+&emsp;&emsp;⭐ 原生组件层级覆盖（解决 map、video 等原生视图遮挡问题）
+
+&emsp;&emsp;⭐ 专用live-pusher直播推流组件
 [参考文档](https://uniapp.dcloud.net.cn/component/list.html)
 
-**缺点**
+**❌缺点**
 
-① CSS 支持受限
+&emsp;&emsp;① CSS 支持受限
 
-② Canvas 性能较差
+&emsp;&emsp;② Canvas 性能较差
 
 #### (3) nvue开发与vue开发的常见区别
-① nvue 页面控制显隐只可以使用v-if不可以使用v-show；
+&emsp;&emsp;① nvue 页面控制显隐只可以使用v-if不可以使用v-show；
 
-② nvue 页面只能使用flex布局，不支持其他布局方式；
+&emsp;&emsp;② nvue 页面只能使用flex布局，不支持其他布局方式；
 
-③ nvue 页面的布局排列方向默认为竖排（column），可在manifest.json配置中修改；
+&emsp;&emsp;③ nvue 页面的布局排列方向默认为竖排（column），可在manifest.json配置中修改；
 
-④ 文字内容，必须、只能在`<text>`组件下；且只有该标签可以设置字体大小，字体颜色；
+&emsp;&emsp;④ 文字内容，必须、只能在`<text>`组件下；且只有该标签可以设置字体大小，字体颜色；
 
-⑤ 不支持在css里写背景图background-image，可使用`<image>`标签控制层级；
+&emsp;&emsp;⑤ 不支持在css里写背景图background-image，可使用`<image>`标签控制层级；
 
-⑥ css选择器支持的比较少，只能使用 class 选择器；
+&emsp;&emsp;⑥ css选择器支持的比较少，只能使用 class 选择器；
 
-⑦ class 进行绑定时只支持数组语法；
+&emsp;&emsp;⑦ class 进行绑定时只支持数组语法；
 
-⑧ 在 App.vue 中定义的全局js变量不会在 nvue 页面生效。globalData和vuex是生效的；
+&emsp;&emsp;⑧ 在 App.vue 中定义的全局js变量不会在 nvue 页面生效。globalData和vuex是生效的；
 
-⑨ 目前不支持在 nvue 页面使用 typescript/ts；
+&emsp;&emsp;⑨ 目前不支持在 nvue 页面使用 typescript/ts；
 
-⑩ 仍然强烈建议在nvue页面使用原生导航栏；
+&emsp;&emsp;⑩ 仍然强烈建议在nvue页面使用原生导航栏；
 
 
-#### **3、 APP打包**  
+#### **3、 APP运行及打包**  
+![真机运行](../../public//font/QQ20250630-124930.png)
+#### (1) 运行 
+##### &emsp;&emsp;① 模拟器运行
+&emsp;&emsp;APP开发和调试过程中，模拟器调试可以更快速的进行热更新以及多类型设备联调，但是模拟器依然无法真实还原大部分正式场景。如真实硬件适配、深度测试厂商SDK兼容性等，所以要明确“真机是生产环境唯一信标，模拟器只是开发加速器”原则。
+
+&emsp;&emsp;[参考文档](https://uniapp.dcloud.net.cn/tutorial/run/installSimulator.html)
+
+##### &emsp;&emsp;② 真机运行
+&emsp;&emsp;不管什么类型的项目，都需要连接真实的手机或手机模拟器来运行测试。真机运行的目的，是为了实现代码修改的热刷新，避免打包才能看到效果。在HBuilder中编辑代码，在手机上实时看到修改效果，并且可以在HBuilder控制台看到日志。
+
+&emsp;&emsp;[参考文档](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html)
+
+##### &emsp;&emsp;③ IOS运行配置
+&emsp;&emsp;IOS运行需要对标准基座进行签名，有两种方案可以获取IOS签名，标准方案：Apple证书对iOS标准基座签名，需要申请自己的开发者账号并且生成专用的Apple签名证书；代替方案：使用三方工具（如爱思助手）对标准基座签名，主要用于在前期未获得专用签名证书时的过渡方案；
+
+&emsp;&emsp;[参考文档](https://uniapp.dcloud.net.cn/tutorial/run/ios-apple-certificate-signature.html)
+
+#### (2) 打包 
 &emsp;&emsp;uni-app提供本地和云端两种打包方式。云打包分为两种模式：① 安心打包（不传代码和证书）；②针对无Mac设备的传统云打包（临时上传证书和代码至官方服务器后立即删除）。云打包服务旨在降低原生开发门槛，帮助没有Mac的前端开发者直接生成iOS/Android安装包。
+![打包](../../public//font/打包.png)
 
-[安心打包配置参考文档](https://ask.dcloud.net.cn/article/37979)
+[打包配置参考文档](https://ask.dcloud.net.cn/article/37979)
 
 **注意：**
 - App打包时，注意如果涉及三方sdk，需进行申请并在manifest.json里配置，否则相关功能无法使用。
