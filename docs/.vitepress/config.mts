@@ -45,6 +45,9 @@ export default defineConfig({
       { text: "首页", link: "/index" },
       { text: "前端开发文档",items:[
         {
+          text: '前端知识点积累',
+          link: '/frontFiles/interview',
+        },{
           text: 'Hybrid APP开发',
           link: '/frontFiles/Hybrid/index',
         }]  },
