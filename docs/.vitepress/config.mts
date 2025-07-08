@@ -31,7 +31,7 @@ export default defineConfig({
     // 页脚
     footer: {
       message: "Released under the MIT License.",
-      copyright: "Copyright © 2024-present China Codery",
+      copyright: "Copyright © 2024-present China TodeAI",
     },
     // 文档的最后更新时间
     // lastUpdated: {
