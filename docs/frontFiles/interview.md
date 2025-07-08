@@ -1,7 +1,7 @@
 # 前端知识点积累（实战）
 ## 第一部分
 ### 一、Vue3中性能提升的优化策略包括那些？
-&emsp;&emsp;① 编译期自动提升静态节点`(Static Hoisting)`，可以减少虚拟DOM对比操作；
+&emsp;&emsp;① 编译时自动提升静态节点`(Static Hoisting)`，可以减少虚拟DOM对比操作；
 
 &emsp;&emsp;② 使用`Patch Flag`优化`diff`过程，动态属性变更时跳过静态节点精准更新；
 
@@ -70,8 +70,8 @@ Fragment (轻量级标记)
 
 | Vue 2 钩子           | Vue 3 选项式 API 钩子 | Vue 3 组合式 API 等效写法         | 变化类型               |
 |----------------------|----------------------|----------------------------------|-----------------------|
-| `beforeCreate`       | 🟢 **移除**           | 🟢 `setup()` 内部代码代替         | 完全替代方案           |
-| `created`            | 🟢 **移除**           | 🟢 `setup()` 内部代码代替         | 完全替代方案           |
+| `beforeCreate`       | `beforeCreate`           | 🟢 `setup()` 内部代码代替         | 完全替代方案           |
+| `created`            | `created`           | 🟢 `setup()` 内部代码代替         | 完全替代方案           |
 | `beforeMount`        | `beforeMount`        | `onBeforeMount(() => {...})`     | **保持相同**           |
 | `mounted`            | `mounted`            | `onMounted(() => {...})`         | **保持相同**           |
 | `beforeUpdate`       | `beforeUpdate`       | `onBeforeUpdate(() => {...})`    | **保持相同**           |
@@ -91,10 +91,10 @@ Fragment (轻量级标记)
 | **响应式原理**       | 基本类型：`getter/setter`<br>对象：内部调用 `reactive`（Proxy） | `Proxy` |
 | **模板解包**         | 自动解包（无需 `.value`）      | 直接使用属性                 |
 | **重新赋值**         | 支持（通过 `.value` 替换）     | ❌ 不支持（会破坏响应性）     |
-| **解构行为**         | ✅ 解构后仍需通过 `.value` 保持响应性 | ❌ 解构后失去响应性          |
+| **解构行为**         | 解构后仍需通过 `.value` 保持响应性 | ❌ 解构后失去响应性          |
 | **TypeScript**       | 需显式泛型（如 `ref<number>()`） | 自动推断类型                |
 
-`reactive`解构后如何保持响应式？
+> `reactive`解构后如何保持响应式？
 
 &emsp;&emsp;由于`Proxy`的局限性，`reactive`的响应式依赖于`Proxy`拦截对象的属性访问，而解构后的变量变为独立的值副本则无法被Proxy追踪；
 ```js
@@ -102,7 +102,7 @@ const state = reactive({ count: 0 });
 const { count } = state; // 解构后，count 是普通变量
 count++; // ❌ 不会触发更新
 ```
-解决方案：① 直接访问原对象（不推荐解构）；② 使用`toRefs`将`reactive`对象的每个属性转换为`ref`从而保持响应式;
+> 解决方案：① 直接访问原对象（不推荐解构）；② 使用`toRefs`将`reactive`对象的每个属性转换为`ref`从而保持响应式;
 ```js
 import { toRefs } from 'vue';
 const state = reactive({count: 0});
@@ -124,7 +124,7 @@ this.$nextTick(() => {
 
 &emsp;&emsp;Vue2的`nextTick` 实现依赖异步任务队列机制，优先使用微任务（`Promise.then和MutationObserver）`，然后降级为宏任务`（setImmediate和setTimeout）`;
 
-&emsp;&emsp;**③优先级关系**：	Promise.then > MutationObserver > setImmediate > setTimeout
+&emsp;&emsp;**③ 优先级关系**：	`Promise.then` > `MutationObserver`> `setImmediate` >` setTimeout`
 
 &emsp;&emsp;**注意**：Vue3的`nextTick`同样基于微任务但实现更加简洁，直接使用`Promise.then`，无需降级处理。
 
@@ -132,10 +132,10 @@ this.$nextTick(() => {
 ### 七、Vue3中`watch`和`watchEffect`的区别
 
 ####  **watch特点**
-- 显式声明依赖：需要明确制定要监听的对象和以及回调函数；
-- 惰性执行：默认不会立即执行，只有依赖变化时才触发；
-- 旧值与新值：在回调函数中获取oldValue和newValue;
-- 精确控制：适用于需要明确知道哪些状态变化时触发逻辑的场景；
+- **显式声明依赖**：需要明确制定要监听的对象和以及回调函数；
+- **惰性执行**：默认不会立即执行，只有依赖变化时才触发；
+- **旧值与新值**：在回调函数中获取oldValue和newValue;
+- **精确控制**：适用于需要明确知道哪些状态变化时触发逻辑的场景；
 ```js
 import { watch } from 'vue';
 
@@ -153,10 +153,10 @@ watch(() => state.user.name, (newName, oldName) => {
 
 ```
 ####  **watchEffect特点**
-- 自动收集依赖：回调中访问的任何响应式数据都会被自动跟踪；
-- 立即执行：初始化时就会运行一次，后续依赖变化时再触发；
-- 无旧值：回调中无法直接获取变化前的值;
-- 简洁性：适合依赖关系简单的逻辑;
+- **自动收集依赖**：回调中访问的任何响应式数据都会被自动跟踪；
+- **立即执行**：初始化时就会运行一次，后续依赖变化时再触发；
+- **无旧值**：回调中无法直接获取变化前的值;
+- **简洁性**：适合依赖关系简单的逻辑;
 
 ```js
 import { watchEffect } from 'vue';
@@ -171,7 +171,7 @@ watchEffect(() => {
 ```
 
 ### 八、Vue3中`Suspense`组件的作用是什么
-&emsp;&emsp;`<Suspense>`是Vue3内置组件，用于协调对异步依赖的处理，如在异步内容加载完成前显示`fallback`内容（如loading），加载完成后显示实际内容。
+&emsp;&emsp;`<Suspense>`是Vue3内置组件，用于<u>*协调对异步依赖的处理*</u>，如在异步内容加载完成前显示`fallback`内容（如loading），加载完成后显示实际内容。
 
 **① 基本用法**
 ```html
@@ -241,9 +241,9 @@ Vue2中：**v-for 比 v-if 的优先级更高**
 ```
 
 ### 十一、Vue2中混入mixin的合并策略有哪些？
-- 数据对象data → 递归合并，发生冲突时组件数据优先覆盖混入数据。
-- 生命周期钩子 → 合并为数组，混入钩子先执行，组件钩子后执行。
-- 需要对象值的选项 → 合并到同一个对象中，当这些对象中存在冲突的键时，组件的选项将优先考虑。
+- *数据对象data* → 递归合并，发生冲突时组件数据优先覆盖混入数据。
+- *生命周期钩子* → 合并为数组，混入钩子先执行，组件钩子后执行。
+- *需要对象值的选项* → 合并到同一个对象中，当这些对象中存在冲突的键时，组件的选项将优先考虑。
 
 [参考文档](https://v2.vuejs.org/v2/guide/mixins.html)
 
