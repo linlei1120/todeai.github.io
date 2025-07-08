@@ -77,6 +77,13 @@ export default defineConfig({
     ],
 
     sidebar: {
+      '/frontFiles/': [{
+        text: '前端知识点积累',
+          items: [
+              { text: '综合知识点积累', link: '/frontFiles/interview' },
+              { text: '绿米联创面试题', link: '/frontFiles/绿米联创' }
+          ]
+      }],
     },
     // 社交链接
     socialLinks: [{ icon: "github", link: "https://github.com/linlei1120/todeai.github.io" }],
